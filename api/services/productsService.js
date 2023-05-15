@@ -8,7 +8,7 @@ class ProductService {
   }
 
   async generate() {
-    const limit = 100;
+    const limit = 15;
     for (let index = 0; index < limit; index++) {
       this.products.push({
         id: faker.string.uuid(),
