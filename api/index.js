@@ -1,15 +1,15 @@
 const express = require('express');
 const routerAPI = require('./routes')
 const app = express();
-const port = 3003;
 const cors = require('cors')
 const{logErrors,errorHandler, boomErrorHandler}= require('./middlewares/error.handler.js');
+const port = process.env.PORT || 3003;
 
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req, res) => {
-  res.send('hello this is a server express');
+app.get('/api', (req, res) => {
+  res.send('this is a server express');
 });
 
 routerAPI(app)
