@@ -2,6 +2,7 @@ const express = require('express');
 const routerAPI = require('./routes')
 const app = express();
 const cors = require('cors')
+const handleSQLError = require('./middlewares/sql.error')
 const{logErrors,errorHandler, boomErrorHandler}= require('./middlewares/error.handler.js');
 const port = process.env.PORT || 3003;
 
@@ -15,6 +16,7 @@ app.get('/api', (req, res) => {
 routerAPI(app)
 
 app.use(logErrors);
+app.use(handleSQLError)
 app.use(boomErrorHandler);
 app.use(errorHandler);
 

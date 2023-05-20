@@ -5,21 +5,32 @@ const {
   createProductSchema,
   updateProductSchema,
   getProductSchema,
+  queryProductSchema,
 } = require('../schemas/productSchema');
 const router = express.Router();
 
 const service = new ProductService();
 
-router.get('/', async (req, res) => {
-  const products = await service.find();
-  res.json(products);
-});
+router.get(
+  '/',
+  validateHandler(queryProductSchema, 'query'),
+  async (req, res, next) => {
+    try {
+      const products = await service.find(req.query);
+      res.json(products);
+    } catch (error) {
+      next(error)
+    }
+  }
+);
 
 router.get('/filter', (req, res) => {
   res.send('Yo soy un filter');
 });
 
-router.get('/:id', validateHandler(getProductSchema, 'params'),
+router.get(
+  '/:id',
+  validateHandler(getProductSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -31,7 +42,9 @@ router.get('/:id', validateHandler(getProductSchema, 'params'),
   }
 );
 
-router.post('/', validateHandler(createProductSchema, 'body'),
+router.post(
+  '/',
+  validateHandler(createProductSchema, 'body'),
   async (req, res) => {
     const body = req.body;
     const newProduct = await service.create(body);
@@ -39,9 +52,10 @@ router.post('/', validateHandler(createProductSchema, 'body'),
   }
 );
 
-router.patch('/:id',
-validateHandler(getProductSchema, 'params'),
-validateHandler(updateProductSchema, 'body'),
+router.patch(
+  '/:id',
+  validateHandler(getProductSchema, 'params'),
+  validateHandler(updateProductSchema, 'body'),
   async (req, res) => {
     try {
       const { id } = req.params;
