@@ -39,6 +39,7 @@ const OrderSchema = {
           return total + (item.price * item.OrderProduct.amount)
         },0)
       }
+      return 0;
     }
   }
 };

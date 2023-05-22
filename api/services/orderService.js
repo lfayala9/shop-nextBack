@@ -8,8 +8,16 @@ class OrderService {
     return newOrder;
   }
   async find() {
-    const response = await models.Order.findAll();
-    return response;
+    const orders = await models.Order.findAll({
+      include: [
+        {
+          association: 'customer',
+          include: ['user']
+        },
+        'items'
+      ]
+    })
+    return orders
   }
   async findOne(id) {
     const order = await models.Order.findByPk(id, {
