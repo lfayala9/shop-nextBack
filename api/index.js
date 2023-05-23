@@ -1,9 +1,9 @@
 const express = require('express');
-const routerAPI = require('./api/routes')
+const routerAPI = require('./routes')
 const app = express();
 const cors = require('cors')
-const handleSQLError = require('./api/middlewares/sql.error')
-const{logErrors,errorHandler, boomErrorHandler}= require('./api/middlewares/error.handler.js');
+const handleSQLError = require('./middlewares/sql.error')
+const{logErrors,errorHandler, boomErrorHandler}= require('./middlewares/error.handler.js');
 const port = process.env.PORT || 3003;
 
 app.use(express.json());
