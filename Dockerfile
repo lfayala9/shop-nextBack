@@ -17,6 +17,6 @@ COPY . .
 
 RUN npm run migrations:run
 
-EXPOSE 5050
+EXPOSE 8080
 
 CMD ["npm", "start"]
