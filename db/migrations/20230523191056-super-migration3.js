@@ -21,7 +21,7 @@ module.exports= {
       name: {
         allowNull:false,
         type:DataTypes.STRING,
-        field:'first_name',
+        field:'name',
       },
       lastName: {
         allowNull:false,
