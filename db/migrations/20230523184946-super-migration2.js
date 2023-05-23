@@ -18,7 +18,7 @@ module.exports= {
         primaryKey:true,
         type:DataTypes.INTEGER,
       },
-      firstName: {
+      name: {
         allowNull:false,
         type:DataTypes.STRING,
         field:'first_name',
