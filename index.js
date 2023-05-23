@@ -1,15 +1,15 @@
 const express = require('express');
-const routerAPI = require('./routes')
+const routerAPI = require('./api/routes')
 const app = express();
 const cors = require('cors')
-const handleSQLError = require('./middlewares/sql.error')
-const{logErrors,errorHandler, boomErrorHandler}= require('./middlewares/error.handler.js');
+const handleSQLError = require('./api/middlewares/sql.error')
+const{logErrors,errorHandler, boomErrorHandler}= require('./api/middlewares/error.handler.js');
 const port = process.env.PORT || 3003;
 
 app.use(express.json());
 app.use(cors());
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   res.send('this is a server express');
 });
 
