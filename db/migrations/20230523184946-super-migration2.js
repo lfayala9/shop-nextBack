@@ -11,35 +11,6 @@ const { ORDER_PRODUCT_TABLE } =require('./../models/order-product.model');
 /**@type {import('sequelize-cli').Migration} */
 module.exports= {
   up:async(queryInterface)=> {
-    await queryInterface.createTable(USER_TABLE, {
-      id: {
-        allowNull:false,
-        autoIncrement:true,
-        primaryKey:true,
-        type:DataTypes.INTEGER,
-      },
-      email: {
-        allowNull:false,
-        type:DataTypes.STRING,
-        unique:true,
-      },
-      password: {
-        allowNull:false,
-        type:DataTypes.STRING,
-      },
-      createdAt: {
-        allowNull:false,
-        type:DataTypes.DATE,
-        field:'create_at',
-        defaultValue:Sequelize.NOW,
-      },
-      updatedAt: {
-        allowNull: true,
-        type: DataTypes.DATE,
-        field: 'updated_at',
-        defaultValue: Sequelize.NOW,
-      }
-    });
     await queryInterface.createTable(CUSTOMER_TABLE, {
       id: {
         allowNull:false,
@@ -241,7 +212,6 @@ module.exports= {
   },
 
   down:async(queryInterface)=> {
-    await queryInterface.dropTable(USER_TABLE);
     await queryInterface.dropTable(CUSTOMER_TABLE);
     await queryInterface.dropTable(CATEGORY_TABLE);
     await queryInterface.dropTable(PRODUCT_TABLE);
@@ -249,3 +219,4 @@ module.exports= {
     await queryInterface.dropTable(ORDER_PRODUCT_TABLE);
   },
 };
+
