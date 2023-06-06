@@ -2,6 +2,7 @@ const express = require('express');
 const routerAPI = require('./routes')
 const app = express();
 const cors = require('cors')
+const {checkApiKey} = require('./middlewares/auth.handler')
 const handleSQLError = require('./middlewares/sql.error')
 const{logErrors,errorHandler, boomErrorHandler}= require('./middlewares/error.handler.js');
 const port = process.env.PORT || 3003;
@@ -9,7 +10,9 @@ const port = process.env.PORT || 3003;
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req, res) => {
+require('../utils/auth')
+
+app.get('/', checkApiKey,(req, res) => {
   res.send('this is a server express');
 });
 
