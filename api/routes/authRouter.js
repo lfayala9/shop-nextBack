@@ -17,7 +17,8 @@ router.post('/login',
       const token = jwt.sign(payload, config.jwtSecret)
       res.json({
         user,
-        token
+        token,
+        message: 'Welcome Back'
       })
     } catch (error) {
       next(error)
